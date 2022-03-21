@@ -42,7 +42,7 @@ public class CollectionTestSuite {
     @Test
     void testOddNumbersExterminatorNormalList() {
         //Given
-        List<Integer> listOfNumbers = new ArrayList<>();
+        List<Integer> listOfNumbers = new LinkedList<>();
         listOfNumbers.add(45);
         listOfNumbers.add(-4);
         listOfNumbers.add(2);
