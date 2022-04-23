@@ -17,10 +17,10 @@ public class FlightSearch {
 
     public boolean findFlight(Flight flight) throws RouteNotFoundException {
 
-        try {
-            return availableAirports.get(flight.getArrivalAirport());
-        } catch (Exception e) {
+        if (availableAirports.get(flight.getArrivalAirport()) == null) {
             throw new RouteNotFoundException();
+        } else {
+            return availableAirports.get(flight.getArrivalAirport());
         }
     }
 
