@@ -5,14 +5,31 @@ import java.util.Scanner;
 public class RpsRunner {
 
     public static void main(String[] arg) {
-        Boolean end = false;
+        boolean end = false;
         while(!end) {
             Scanner key = new Scanner(System.in);
-            System.out.println("Enter your name: ");
-            String username = key.nextLine();
-            System.out.println("Enter the number of rounds: ");
-            int nOfRounds = key.nextInt();
-            end = true;
+            Game game = new Game();
+            game.askInitialInfo();
+            for (game.setCounter(1); game.getCounter() <= game.getNOfRounds(); game.setCounter(1)) {
+                game.displayInstructions();
+                String currentMove = key.nextLine();
+                int returnedValue = game.executePlayerMove(currentMove);
+                if(returnedValue == 0) {
+                    game.setCounter(-1);
+                    end = true;
+                    break;
+                }
+                if(returnedValue == 1) {
+                    game.setCounter(-1);
+                    break;
+                }
+                game.playRound();
+                game.displayCurrentRound();
+                if(game.getCounter() == game.getNOfRounds()) {
+                    game.displayGameWinner();
+                    end = true;
+                }
+            }
         }
     }
 }
